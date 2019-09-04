@@ -111,9 +111,3 @@ symbols_count_time:
   total_symbols: true
   total_time: true
 
-algolia:
-  applicationID: 6E9DDU9CB8
-  apiKey: 366570dc57bdb03a1dfcc9e3c92bbac7
-  indexName: blog
-  chunkSize: 5000
-
