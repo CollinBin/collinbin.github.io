@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: collin's blog
-subtitle:
-description:
+title: Collin's Blog
+subtitle: 
+description: 
 keywords:
-author: collin
+author: Collin Song
 language: zh-Hans
 timezone:
 
@@ -61,8 +61,16 @@ rss: /atom.xml
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 12
+  per_page: 10
   order_by: -date
+
+archive_generator:
+  per_page: 20
+  yearly: true
+  monthly: true
+
+tag_generator:
+  per_page: 10
   
 # Category & Tag
 default_category: uncategorized
@@ -96,4 +104,16 @@ deploy:
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 plugins: hexo-generate-feed
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+
+algolia:
+  applicationID: 6E9DDU9CB8
+  apiKey: 366570dc57bdb03a1dfcc9e3c92bbac7
+  indexName: blog
+  chunkSize: 5000
 
