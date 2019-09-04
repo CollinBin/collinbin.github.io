@@ -1,137 +1,77 @@
 ---
-title: 搭建 Hexo-NexT 那点儿事
+title: 搭建Hexo-Next那点儿事
+date: 2019-09-04 15:26:18
+tags: [Hexo,NexT]
+categories: Hexo
+description: 从毕业到现在也工作了6年多，之前积累东西一直在 evernote 上，或者工作中随手写在公司 wiki 上，最近LP封给我“大勤快”这个称号，于是一冲动决定整个像样点儿的独立博客。很多小伙伴应该也想搭建一个自己的博客，网上也有一堆详细的教程。在此，我详细的总结一下我搭建的基于 Hexo-Next 的博客步骤，主要分享一些我的修改经验，帮大家填填坑，更多个性化操作需要大家以后去摸索。
+
 ---
-自己从事iOS开发工作接近两年左右的时间了，在自己工作之余，收集整理了一些优秀的三方开源框架，自己整理的这些三方开源库涵盖了iOS开发面很多方面的知识。非常感谢这些开源库的作者们，正是因为这些库，提高了我们的开发效率，同样也是我们学习进步的源泉。现将这个整理工程文件分享出来，希望能给需要的朋友一些帮助，同时也自己也做下收集记录。
 
-<!-- more -->
+# 目录结构
 
-# 一、前言
-自己从事iOS开发工作接近两年左右的时间了，在自己工作之余，收集整理了一些优秀的三方开源框架，自己整理的这些三方开源库涵盖了iOS开发面很多方面的知识。非常感谢这些开源库的作者们，正是因为这些库，提高了我们的开发效率，同样也是我们学习进步的源泉。现将这个整理工程文件分享出来，希望能给需要的朋友一些帮助，同时也自己也做下收集记录。
+* 安装 Node.js
+* 安装 Git
+* 注册 GitHub
+* 安装 hexo
+* 连接 GitHub 与本地 
+* 写文章、发布文章
+* 绑定域名
+* 设置个性化主题 NexT
+* 常见问题与解答（FAQ）  
 
-# 二、Swift三方开源库
+# 安装 Node.js
 
-* 动画
+### 一、通过 homebrew 安装 node（推荐）
 
-精美加载loading动画  
-[NVActivityIndicatorView](www.baidu.com) - 7098 star
+1、安装 homebrew  
 
-* 网络请求  
+* 可以通过 `brew -v` 来查看是否安装了 homebrew，如果能正确显示 homebrew 的版本号，说明 homebrew 已安装
 
-[Alamofire](www.baidu.com) - 28292 star
+	![](images/1.png)
 
-* 占位图
+* 如果没有安装 homebrew，通过终端命令安装
 
-数据加载等待占位图  
-[SkeletonView](www.baidu.com)- 5083 star
+	`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
+2、安装 node
 
-* 二维码扫描
+* 在终端中输入命令
 
-[EFQRCode](www.baidu.com)- 2751 star
+	```
+	brew link node
+	brew uninstall node
+	brew install node
+	```
 
-* 布局框架
+* 验证 node 是否安装成功
+	
+	下发命令 `node -v`、`npm -v`，能正确显示版本号即表示安装成功
+	
+	![](images/2.png)
+	
+* 如果没有梯子的话，可以使用阿里的国内镜像进行加速。
 
-苹果原生布局AutoLayout封装，类似Masonry
-[SnapKit](www.baidu.com)- 12978 star
+	`npm config set registry https://registry.npm.taobao.org`
+	
+	参考：[淘宝 NPM 镜像](https://npm.taobao.org/)
+	
+### 二、通过安装包来安装 node
 
-TangramKit的内核是基于对UIView的layoutSubviews方法的重载以及对子视图的bounds和center属性的设置而实现的。
+* 下载安装包
 
-[TangramKit](www.baidu.com)- 775 star
+	可以从 [Node.js官方](https://nodejs.org/zh-cn/) 下载 node 的安装包
 
-* 图表绘制
+	![](images/3.png)
 
-图标绘制框架
-[Charts](www.baidu.com)- 18605 star
+### 三、删除 node
 
-* 截屏
+如果之前已经安装过 node，再次安装会产生冲突，需要先删除
 
-UIView，UIScrollView截屏
+* 如果是通过 homebrew 安装的，下发命令 `brew uninstall node` 即可；
 
-[SwViewCapture](www.baidu.com)- 539 star
+* 执行命令行 
 
-* 提示框架
+	`sudo rm -rf /usr/local/{bin/{node,npm},lib/node_modules/npm,lib/node,share/man/*/node.*}`
+	
+	
 
-Whisper is a component that will make the task of display messages and in-app notifications simple
-
-[Whisper](www.baidu.com)- 3610 star
-
-图片加载
-
-onevcat大神写的一个图片下载与缓存框架
-
-[Kingfisher](www.baidu.com)- 14764 star
-
-[BBWebImage](www.baidu.com)- 110 star
-
-转场动画
-
-控制器转场动画
-
-[Hero](www.baidu.com)- 17225 star
-
-JSON解析
-
-[AlamofireObjectMapper](www.baidu.com)- 2497 star
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
-
-## Quick Start
-
-### Create a new post
-
-``` bash
-$ hexo new "My New Post"
-```
-
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/deployment.html)
