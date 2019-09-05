@@ -1,8 +1,8 @@
 ---
 title: 搭建 Hexo-Next 那点儿事
 date: 2019-09-04 15:26:18
-tags: [Hexo,NexT]
-categories: Hexo
+tags: [Hexo,NexT,GitHub Pages,博客]
+categories: 博客
 description: 从毕业到现在也工作了6年多，之前积累东西一直在 Evernote 上，或者工作中随手写在公司 Wiki 上，最近LP封给我“大勤快”这个称号，于是一冲动决定整个像样点儿的独立博客。很多小伙伴应该也想搭建一个自己的博客，网上也有一堆详细的教程。在此，我详细的总结一下我搭建的基于 Hexo-Next 的博客步骤，主要分享一些我的修改经验，帮大家填填坑，更多个性化操作需要大家以后去摸索。（本文基于 MAC 介绍）
 
 ---
